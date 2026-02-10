@@ -1,10 +1,13 @@
 {
-    "action_add": "Add",
-    "action_play": "Play",
-    "go_home_message": "Go to Home",
-    "invalid_input_message": "Invalid input.",
-    "ip_address": "IP Address",
-    "page_not_found_message": "The page you are looking for does not exist.",
-    "page_not_found_title": "Page Not Found",
-    "port": "Port"
+  "action_add": "Add",
+  "action_connect": "Connect",
+  "action_listen": "Listen",
+  "action_play": "Play",
+  "connection_option": "Connection Option",
+  "go_home_message": "Go to Home",
+  "invalid_input_message": "Invalid input.",
+  "ip_address": "IP Address",
+  "page_not_found_message": "The page you are looking for does not exist.",
+  "page_not_found_title": "Page Not Found",
+  "port": "Port"
 }
