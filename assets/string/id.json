@@ -2,6 +2,9 @@
     "action_add": "Tambah",
     "action_play": "Main",
     "go_home_message": "Go to Home",
+    "invalid_input_message": "Masukan tidak valid.",
+    "ip_address": "Alamat IP",
     "page_not_found_message": "Laman yang Anda cari tidak ada.",
-    "page_not_found_title": "Laman Tidak Ditemukan"
+    "page_not_found_title": "Laman Tidak Ditemukan",
+    "port": "Port"
 }

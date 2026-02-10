@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:external_mic/model/network_host.dart';
 import 'package:external_mic/navigation/base_navigated_page.dart';
-import 'package:external_mic/res/dimens.dart';
-import 'package:external_mic/utils/id_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -35,6 +33,10 @@ final _networkHostProvider = NotifierProvider(NetworkHostNotifier.new);
 class _HomePage extends StatelessWidget {
   const _HomePage();
 
+  void _listen() async {}
+
+  void _connect() async {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,27 +44,32 @@ class _HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(Dimens.paddingWidget),
-              child: Consumer(
-                builder: (context, ref, child) {
-                  final homePage = ref.watch(_networkHostProvider);
-                  return Text(homePage.ipAddress);
+            Consumer(
+              builder: (context, ref, child) => TextFormField(
+                decoration: InputDecoration(label: Text(tr("ip_address"))),
+                onChanged: (value) {
+                  ref.read(_networkHostProvider.notifier).setIpAddress(value);
                 },
               ),
             ),
             Consumer(
-              builder: (context, ref, child) {
-                return ElevatedButton(
-                  onPressed: () {
-                    ref
-                        .read(_networkHostProvider.notifier)
-                        .setIpAddress(IdUtils.generateRandomId());
-                  },
-                  child: Text(tr("action_add")),
-                );
-              },
+              builder: (context, ref, child) => TextFormField(
+                decoration: InputDecoration(label: Text(tr("port"))),
+                validator: (value) {
+                  if (value == null) return tr("invalid_input_message");
+                  int? intValue = int.tryParse(value);
+                  if (intValue == null) return tr("invalid_input_message");
+                  return null;
+                },
+                onChanged: (value) {
+                  int? intValue = int.tryParse(value);
+                  if (intValue != null) {
+                    ref.read(_networkHostProvider.notifier).setPort(intValue);
+                  }
+                },
+              ),
             ),
+            ElevatedButton(onPressed: () {}, child: Text(tr("action_add"))),
           ],
         ),
       ),
